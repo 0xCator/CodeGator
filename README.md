@@ -1,71 +1,98 @@
-# codestyletest README
+# CodeGator 🐊
 
-This is the README for your extension "codestyletest". After writing up a brief description, we recommend including the following sections.
+**CodeGator** is a Java code assistant for Visual Studio Code. It formats your code to your style rules, detects code smells, refines code, and offers inline completions, all powered by a companion CodeGator server.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Format Java Code**: Formats Java files using your configured style (braces, indentation, naming, imports, alignment, modifier order, and more).
+- **Analyze Code Smells**: Scans your Java code for code smells and can export the results as a **PDF report**.
+- **Refine Java Code**: Suggests improved versions of your code.
+- **Inline Completions**: Shows AI-powered code suggestions as you type in Java files.
+- **Export Settings**: Saves your current CodeGator style settings to a JSON file.
+- **Activity Bar View**: A dedicated CodeGator sidebar with quick access to every action.
 
-For example if there is an image subfolder under your extension project workspace:
+## Commands
 
-\!\[feature X\]\(images/feature-x.png\)
+Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and type `CodeGator`:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+| Command | Description |
+| --- | --- |
+| `CodeGator: Format Java Code` | Format Java code using your style settings |
+| `CodeGator: Analyze Java code smells` | Detect code smells and optionally export a PDF report |
+| `CodeGator: Refine Java code` | Get refined versions of your code |
+| `CodeGator: Export settings to JSON file` | Save your current settings to a JSON file |
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- VS Code **1.98.0** or newer
+- [Language Support for Java™ by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java) (installed automatically as a dependency)
+- A running **CodeGator server**. The default address is `http://localhost:8000`.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+All settings use the `javacodeassistant.` prefix.
 
-For example:
+### General
 
-This extension contributes the following settings:
+| Setting | Default | Description |
+| --- | --- | --- |
+| `serverUrl` | `http://localhost:8000` | URL of the CodeGator server |
+| `braceStyle` | `break` | Brace style: `break` or `attach` |
+| `spaceAroundOperators` | `true` | Insert spaces around operators |
+| `maxLineLength` | `100` | Maximum line length |
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### Modifier Order
 
-## Known Issues
+| Setting | Description |
+| --- | --- |
+| `modifierOrder.class` | Order of modifiers for classes |
+| `modifierOrder.method` | Order of modifiers for methods |
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### Naming Conventions
+
+Each value can be `pascalcase`, `camelcase`, `uppercase`, or a custom regex pattern.
+
+| Setting | Default |
+| --- | --- |
+| `namingConventions.class` | `pascalcase` |
+| `namingConventions.method` | `camelcase` |
+| `namingConventions.variable` | `camelcase` |
+| `namingConventions.constant` | `uppercase` |
+| `namingConventions.parameter` | `camelcase` |
+
+### Imports
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `imports.order` | `preserve` | `sort` or `preserve` |
+| `imports.merge` | `false` | Merge imports |
+
+### Indentation
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `indents.size` | `4` | Indent size |
+| `indents.type` | `spaces` | `spaces` or `tabs` |
+| `indents.switchCaseLabels` | `true` | Indent switch case labels |
+
+### Alignments
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `aligns.afterOpenBracket` | `none` | `none`, `align`, `dont_align`, `always_break`, `block_indent` |
+| `aligns.parametersBeforeAlignment` | `2` | Parameters before alignment (used by `align` and `dont_align`) |
+
+## Development
+
+```bash
+npm install
+npm run compile   # or: npm run watch
+```
+
+Press `F5` in VS Code to open an Extension Development Host. Run tests with `npm test`.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+First release of CodeGator.
